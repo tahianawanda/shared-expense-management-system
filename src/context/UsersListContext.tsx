@@ -24,8 +24,6 @@ const UsersListContext = createContext<UsersListContextType | undefined>(undefin
 
 export const UsersListProvider = ({ children }: UsersListProviderProp) => {
   const [listUsers, setListUsers] = useState<Array<{ id: number, name: string, lastName: string }>>([])
-  const [idIncremental, setIdIncremental] = useState<number>(0)
-  const [error, setError] = useState<string | null>(null)
 
   const getUser = useCallback((id: number): User | undefined => {
     return listUsers.find(p => p.id === id)
@@ -41,7 +39,7 @@ export const UsersListProvider = ({ children }: UsersListProviderProp) => {
     const foundUsers = getUser(id)
     console.log('foundUsers:', foundUsers)
 
-    if(!foundUsers) return setError('No se ha podido registrar')
+    if(!foundUsers) return null
 
     const updatedList = listUsers.map(p =>
       p.id === id ? { ...p, name: users.name ?? p.name, lastName: users.lastName ?? p.lastName } : p
@@ -52,7 +50,7 @@ export const UsersListProvider = ({ children }: UsersListProviderProp) => {
   const deleteUsers = useCallback((id: number) => {
     const Users = getUser(id)
 
-    if (!Users) return setError('No se ha encontrado a la Usersa')
+    if (!Users) return null
 
     const updateList = listUsers.filter(p => p.id !== id)
 

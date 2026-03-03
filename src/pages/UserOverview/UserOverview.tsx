@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '../../components/Button';
 import { useContext } from 'react';
 import { UsersListContext } from '../../context/UsersListContext';
 import UserInfo from './UserInfo/UserInfo';

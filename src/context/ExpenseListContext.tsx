@@ -36,7 +36,7 @@ export const ExpenseListProvider = ({ children }: ExpenseListProps) => {
     }
     setIdIncremental(prev => prev + 1)
     setListExpense(prev => [...prev, newExpense])
-  }, [idIncremental])
+  }, [])
 
   const editExpense = useCallback((id: number, expense: Omit<Expense, 'id'>) => {
     const searchedExpensed = listExpense.find(expense => expense.id === id)
